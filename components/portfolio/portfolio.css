@@ -1,0 +1,211 @@
+/* ============================================================================
+   Portfolio route — distribution visualizations (CSS bars/segments, no chart
+   lib). Strictly additive + route-namespaced (`pf-`). Uses ONLY the existing
+   design-system tokens from globals.css — no new hues, no shadows, no rounding.
+   The single green accent stays the single green accent; everything else is the
+   monochrome ink ramp. Imported only by the Portfolio route's own components.
+   ============================================================================ */
+
+/* ── horizontal distribution row (DistBar) ───────────────────────────────── */
+.pf-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 0.55rem 0;
+  border-bottom: var(--hair-soft);
+}
+.pf-bar:last-child {
+  border-bottom: 0;
+}
+.pf-bar-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.pf-bar-label {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+.pf-bar-read {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.7rem;
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+}
+.pf-bar-val {
+  color: var(--ink-2);
+}
+.pf-bar-pct {
+  min-width: 3ch;
+  text-align: right;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.pf-track {
+  position: relative;
+  width: 100%;
+  height: 14px;
+  background: var(--paper-2);
+  border: 1px solid var(--ink);
+}
+.pf-bar-fill {
+  display: block;
+  height: 100%;
+}
+.pf-bar-fill.green {
+  background: var(--green);
+}
+.pf-bar-fill.ink {
+  background: var(--ink);
+}
+.pf-zero-note {
+  position: absolute;
+  top: 50%;
+  left: 0.4rem;
+  transform: translateY(-50%);
+  font-size: 0.6rem;
+  color: var(--ink-3);
+}
+
+/* ── stacked composition strip (SegmentBar) ──────────────────────────────── */
+.pf-seg-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.pf-seg-strip {
+  display: flex;
+  width: 100%;
+  height: 22px;
+  border: 1px solid var(--ink);
+  overflow: hidden;
+}
+.pf-seg {
+  height: 100%;
+  border-right: 1px solid var(--canvas);
+}
+.pf-seg:last-child {
+  border-right: 0;
+}
+.pf-seg.green {
+  background: var(--green);
+}
+
+/* monochrome ink ramp — value-coded shades, no new hues */
+.pf-seg.ink-0 {
+  background: var(--ink);
+}
+.pf-seg.ink-1 {
+  background: var(--ink-2);
+}
+.pf-seg.ink-2 {
+  background: var(--ink-3);
+}
+.pf-seg.ink-3 {
+  background: #908c85;
+}
+.pf-seg.ink-4 {
+  background: var(--line-soft);
+}
+
+.pf-seg-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.1rem;
+}
+.pf-leg-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.7rem;
+}
+.pf-leg-name {
+  font-size: 0.7rem;
+  letter-spacing: 0.02em;
+}
+.pf-swatch {
+  width: 10px;
+  height: 10px;
+  border: 1px solid var(--ink);
+  flex: 0 0 auto;
+}
+.pf-swatch.green {
+  background: var(--green);
+}
+.pf-swatch.ink-0 {
+  background: var(--ink);
+}
+.pf-swatch.ink-1 {
+  background: var(--ink-2);
+}
+.pf-swatch.ink-2 {
+  background: var(--ink-3);
+}
+.pf-swatch.ink-3 {
+  background: #908c85;
+}
+.pf-swatch.ink-4 {
+  background: var(--line-soft);
+}
+.pf-swatch.open {
+  background: transparent;
+}
+
+/* ── insight banner (the "where's growth?" structural read) ──────────────── */
+.pf-insight {
+  border: 2px solid var(--ink);
+  background: var(--paper);
+  padding: 1rem 1.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.pf-insight.flag {
+  border-color: var(--green-ink);
+  background: var(--green-wash);
+}
+.pf-insight-read {
+  font-size: 1.02rem;
+  line-height: 1.5;
+  color: var(--ink);
+  margin: 0;
+}
+.pf-insight-read strong {
+  font-weight: 700;
+}
+.pf-insight-read .pf-em-green {
+  color: var(--green-ink);
+}
+
+/* ── all-vs-funded toggle framing (static, two stacked columns) ──────────── */
+.pf-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.4rem;
+}
+.pf-split-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+.pf-split-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding-bottom: 0.45rem;
+  margin-bottom: 0.3rem;
+  border-bottom: var(--hair);
+}
+
+@media (max-width: 720px) {
+  .pf-split {
+    grid-template-columns: 1fr;
+    gap: 1.6rem;
+  }
+}

@@ -1,0 +1,697 @@
+/* ============================================================================
+   HL Prioritization OS — global stylesheet.
+
+   The Stitch design system is now COMPILED to static CSS through Next.js's
+   PostCSS + Tailwind v3 pipeline (see tailwind.config.cjs / postcss.config.cjs).
+   We do NOT load the runtime Tailwind CDN — that caused flash-of-unstyled-
+   content. The three @tailwind directives below inject Preflight + the
+   component/utility layers at build time.
+
+   This file has three parts:
+     1. @tailwind base / components / utilities   — the compiled engine
+     2. STITCH additions — the #E7E7E3 technical grid background on <body> and
+        the .technical-border / .border-{t,r,b}-technical 1px hairline helpers,
+        ported verbatim from hl_central_prioritization_board/code.html.
+     3. The legacy "Technical Brutalism" design-system classes (.card, .nav,
+        .badge, .table, .stat, .meter, .notice, …). These remain so the existing
+        five routes keep rendering while the screen agents migrate them onto the
+        Stitch font-, color-, and technical-border vocabulary. New screens should
+        prefer the Stitch Tailwind utilities; the legacy classes are a bridge.
+
+   Fonts (Inter / IBM Plex Mono / Material Symbols Outlined) are loaded via
+   <link> in app/layout.jsx <head> AND mirrored as next/font CSS vars
+   (--font-inter / --font-plex-mono). The Tailwind fontFamily tokens and the
+   legacy --font-sans / --font-mono vars both resolve to them.
+   ============================================================================ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── STITCH additions (ported from code.html) ──────────────────────────────
+   The faint architectural grid on the canvas, and the hard-edged 1px ink
+   borders. .technical-border uses Tailwind's theme() so it tracks the Stitch
+   colors.primary token (#000000) — resolved at build time by PostCSS. */
+@layer base {
+  body {
+    background-color: #eef3fa;
+    background-image: linear-gradient(to right, rgba(17, 122, 202, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(17, 122, 202, 0.05) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+}
+
+@layer components {
+  .technical-border {
+    border: 1px solid theme("colors.primary");
+  }
+  .border-b-technical {
+    border-bottom: 1px solid theme("colors.primary");
+  }
+  .border-r-technical {
+    border-right: 1px solid theme("colors.primary");
+  }
+  .border-t-technical {
+    border-top: 1px solid theme("colors.primary");
+  }
+  /* Stitch's nav/board markup also references a left hairline; provide it for
+     parity with border-{t,r,b}-technical so grid panels can close on all sides. */
+  .border-l-technical {
+    border-left: 1px solid theme("colors.primary");
+  }
+
+  /* Material Symbols Outlined — the icon font Stitch pulls from Google Fonts.
+     The <link> in layout.jsx loads the face; this is the standard ligature
+     setup so <span class="material-symbols-outlined">check_circle</span> draws
+     the glyph instead of the literal word. */
+  .material-symbols-outlined {
+    font-family: "Material Symbols Outlined";
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: "liga";
+    -webkit-font-smoothing: antialiased;
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+  }
+}
+
+/* ============================================================================
+   LEGACY DESIGN SYSTEM — "Technical Brutalism" (the bridge layer).
+
+   These classes back the current /board /intake /portfolio /dials /audit
+   routes and the components/ primitives (Card, Nav, Stat, Badge, Mono, …).
+   They are plain CSS (outside @layer) so they sit after Tailwind's utilities
+   in the cascade and keep the existing surfaces intact during migration.
+   Canvas + ink + the single green accent — same palette family as Stitch.
+   ============================================================================ */
+
+:root {
+  /* paper + ink — Chase cool palette */
+  --canvas: #eef3fa;
+  --paper: #ffffff; /* card surface */
+  --paper-2: #e6eef7; /* alt rows / wells */
+  --ink: #101a24; /* near-black navy text */
+  --ink-2: #3a4a5a; /* secondary text */
+  --ink-3: #64758a; /* tertiary / labels */
+  --line: #0a3d6e; /* hard hairline borders (Chase navy) */
+  --line-soft: #c2d2e2; /* soft internal dividers */
+  --grid: rgba(17, 122, 202, 0.05); /* Chase-blue technical grid lines */
+
+  /* the single status accent */
+  --green: #117ACA;
+  --green-ink: #0a3d6e;
+  --green-wash: #d3e5f7;
+
+  /* monochrome status surrogates (NO new hues — value only) */
+  --hold: #101a24; /* held/duplicate = solid ink fill, white text */
+  --bench: #64758a; /* benched = muted ink */
+  --warn: #101a24; /* warnings render as ink on hatched fill */
+
+  --radius: 0px; /* SHARP. do not round anything. */
+  --maxw: 1140px;
+  --hair: 1px solid var(--line);
+  --hair-soft: 1px solid var(--line-soft);
+
+  --font-sans: var(--font-inter), Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  /* faint technical grid — 24px modules (mirrors the Stitch background above) */
+  background-color: var(--canvas);
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--ink);
+}
+a:hover {
+  color: var(--green-ink);
+  border-color: var(--green);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+  margin: 0 0 0.5rem;
+}
+h1 {
+  font-size: clamp(1.7rem, 3.4vw, 2.5rem);
+}
+h2 {
+  font-size: 1.25rem;
+}
+h3 {
+  font-size: 1.02rem;
+}
+p {
+  margin: 0 0 0.8rem;
+  color: var(--ink-2);
+}
+
+/* ── layout primitives ────────────────────────────────────────────────────── */
+.wrap {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+.page {
+  padding: 2rem 0 4rem;
+}
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.row-flex {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+.spread {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+.muted {
+  color: var(--ink-3);
+}
+.divider {
+  border: 0;
+  border-top: var(--hair);
+  margin: 1.5rem 0;
+}
+
+/* ── monospaced label (IBM Plex Mono, all-caps, tracked) ──────────────────── */
+.mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+.label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink-3);
+  font-weight: 500;
+}
+.label-ink {
+  color: var(--ink);
+}
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--green-ink);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ── top nav (sticky) ─────────────────────────────────────────────────────── */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--canvas);
+  border-bottom: var(--hair);
+}
+.nav .wrap {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  height: 56px;
+}
+.nav .brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  border: 0;
+  white-space: nowrap;
+}
+.nav .brand .mark {
+  width: 14px;
+  height: 14px;
+  background: var(--green);
+  border: 1px solid var(--ink);
+  display: inline-block;
+}
+.nav .links {
+  display: flex;
+  gap: 0.25rem;
+  margin-left: auto;
+  flex-wrap: wrap;
+}
+.nav .links a {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-2);
+  padding: 0.35rem 0.7rem;
+  border: 1px solid transparent;
+}
+.nav .links a:hover {
+  border-color: var(--line-soft);
+  color: var(--ink);
+}
+.nav .links a.active {
+  color: var(--ink);
+  border-color: var(--ink);
+  background: var(--paper);
+}
+
+/* ── card / panel (sharp, hairline, no shadow) ────────────────────────────── */
+.card {
+  background: var(--paper);
+  border: var(--hair);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.2rem;
+}
+.card.flush {
+  padding: 0;
+}
+.card-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.6rem;
+  margin-bottom: 0.8rem;
+  border-bottom: var(--hair-soft);
+}
+.card-title {
+  font-size: 1.02rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.well {
+  background: var(--paper-2);
+  border: var(--hair-soft);
+  padding: 0.8rem 0.9rem;
+}
+
+/* ── hero / section header ────────────────────────────────────────────────── */
+.hero {
+  border-bottom: var(--hair);
+  background: var(--canvas);
+}
+.hero .wrap {
+  padding: 2.4rem 1.5rem 2rem;
+}
+.hero h1 {
+  max-width: 22ch;
+}
+.hero .lede {
+  max-width: 70ch;
+  font-size: 1.05rem;
+  color: var(--ink-2);
+}
+
+/* ── stat readout (big number + mono label) ───────────────────────────────── */
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  border: var(--hair);
+  background: var(--paper);
+}
+.stat {
+  flex: 1 1 120px;
+  padding: 0.85rem 1rem;
+  border-right: var(--hair-soft);
+}
+.stat:last-child {
+  border-right: 0;
+}
+.stat .n {
+  font-family: var(--font-sans);
+  font-size: 1.7rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+.stat .n.green {
+  color: var(--green-ink);
+}
+.stat .l {
+  margin-top: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-3);
+}
+
+/* ── status dot (StatDot) — value-coded, one accent ───────────────────────── */
+.dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border: 1px solid var(--ink);
+  vertical-align: middle;
+}
+.dot.green {
+  background: var(--green);
+}
+.dot.ink {
+  background: var(--ink);
+}
+.dot.open {
+  background: transparent;
+}
+.dot.muted {
+  background: var(--line-soft);
+}
+
+/* ── tier badge (TierBadge) + funding/status badges ───────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid var(--ink);
+  border-radius: var(--radius);
+  white-space: nowrap;
+  color: var(--ink);
+  background: var(--paper);
+}
+.badge.solid {
+  background: var(--ink);
+  color: var(--canvas);
+}
+.badge.green {
+  background: var(--green);
+  color: #fff;
+  border-color: var(--green-ink);
+}
+.badge.green-soft {
+  background: var(--green-wash);
+  color: var(--green-ink);
+  border-color: var(--green);
+}
+.badge.muted {
+  color: var(--ink-3);
+  border-color: var(--line-soft);
+}
+
+/* tier-specific shorthands (Now is the only one that gets the accent) */
+.badge.tier-now {
+  background: var(--green);
+  color: #fff;
+  border-color: var(--green-ink);
+}
+.badge.tier-next {
+  background: var(--ink);
+  color: var(--canvas);
+}
+.badge.tier-later {
+  background: var(--paper);
+  color: var(--ink);
+}
+.badge.tier-watchlist {
+  background: var(--paper-2);
+  color: var(--ink-3);
+  border-color: var(--line-soft);
+}
+.badge.tier-cold,
+.badge.tier-archived {
+  background: var(--paper-2);
+  color: var(--ink-3);
+  border-style: dashed;
+  border-color: var(--ink-3);
+}
+
+/* funding badges */
+.badge.fund-funded {
+  background: var(--green-wash);
+  color: var(--green-ink);
+  border-color: var(--green);
+}
+.badge.fund-benched {
+  color: var(--ink-3);
+  border-color: var(--line-soft);
+}
+.badge.fund-held {
+  background: var(--ink);
+  color: var(--canvas);
+}
+
+/* ── data table (the board / audit grid) ──────────────────────────────────── */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+.table th {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-3);
+  text-align: left;
+  font-weight: 500;
+  padding: 0.55rem 0.7rem;
+  border-bottom: var(--hair);
+}
+.table td {
+  padding: 0.6rem 0.7rem;
+  border-bottom: var(--hair-soft);
+  vertical-align: middle;
+}
+.table tr:last-child td {
+  border-bottom: 0;
+}
+.table tr.held td {
+  background: repeating-linear-gradient(
+    45deg,
+    var(--paper-2),
+    var(--paper-2) 6px,
+    var(--paper) 6px,
+    var(--paper) 12px
+  );
+}
+.table .num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+.table .rank {
+  font-family: var(--font-mono);
+  color: var(--ink-3);
+  width: 2.5rem;
+}
+
+/* ── score bar (hard-edged meter) ─────────────────────────────────────────── */
+.meter {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.meter .track {
+  width: 90px;
+  height: 8px;
+  background: var(--paper-2);
+  border: 1px solid var(--ink);
+}
+.meter .fill {
+  display: block;
+  height: 100%;
+  background: var(--green);
+}
+.meter .v {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  min-width: 2ch;
+  text-align: right;
+}
+
+/* ── receipt code chip ────────────────────────────────────────────────────── */
+.receipt {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--ink-2);
+  background: var(--paper-2);
+  border: var(--hair-soft);
+  padding: 0.08rem 0.4rem;
+  white-space: nowrap;
+}
+
+/* ── buttons / controls ───────────────────────────────────────────────────── */
+.btn {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.5rem 0.95rem;
+  border: var(--hair);
+  border-radius: var(--radius);
+  background: var(--paper);
+  color: var(--ink);
+  cursor: pointer;
+}
+.btn:hover {
+  background: var(--paper-2);
+}
+.btn.primary {
+  background: var(--green);
+  color: #fff;
+  border-color: var(--green-ink);
+}
+.btn.primary:hover {
+  background: var(--green-ink);
+}
+.btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+/* form fields */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-bottom: 0.9rem;
+}
+.field > .label {
+  color: var(--ink-2);
+}
+.input,
+.select,
+.textarea {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  padding: 0.5rem 0.6rem;
+  border: var(--hair);
+  border-radius: var(--radius);
+  background: var(--paper);
+  color: var(--ink);
+}
+.input:focus,
+.select:focus,
+.textarea:focus {
+  outline: 2px solid var(--green);
+  outline-offset: -1px;
+}
+
+/* slider (dial board) */
+.slider {
+  width: 100%;
+  accent-color: var(--green);
+}
+
+/* ── pre / code block (brief, ledger payloads) ────────────────────────────── */
+.pre {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  line-height: 1.6;
+  color: var(--ink-2);
+  background: var(--paper);
+  border: var(--hair);
+  padding: 1rem 1.1rem;
+  white-space: pre-wrap;
+  overflow-x: auto;
+  margin: 0;
+}
+
+/* ── notice / refusal banner (CADMUS refusal) ─────────────────────────────── */
+.notice {
+  border: var(--hair);
+  background: var(--paper);
+  padding: 0.8rem 1rem;
+  font-size: 0.88rem;
+}
+.notice.refusal {
+  border-width: 2px;
+  background: repeating-linear-gradient(
+    45deg,
+    var(--paper),
+    var(--paper) 8px,
+    var(--paper-2) 8px,
+    var(--paper-2) 16px
+  );
+}
+.notice .label {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+/* ── footer ───────────────────────────────────────────────────────────────── */
+.foot {
+  border-top: var(--hair);
+  margin-top: 3rem;
+  background: var(--canvas);
+}
+.foot .wrap {
+  padding: 1.4rem 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-3);
+  line-height: 1.7;
+}
+
+/* ── responsive ───────────────────────────────────────────────────────────── */
+@media (max-width: 720px) {
+  .nav .wrap {
+    height: auto;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+    flex-wrap: wrap;
+  }
+  .nav .links {
+    margin-left: 0;
+    width: 100%;
+  }
+  .stat {
+    flex-basis: 50%;
+    border-bottom: var(--hair-soft);
+  }
+}

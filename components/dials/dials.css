@@ -1,0 +1,166 @@
+/* Dial Board — route-scoped layout only. Reuses the design-system tokens from
+   app/globals.css (all colors/fonts come from the CSS vars there). Every class
+   is `dials-`-prefixed so it can't collide with the shared system. No new hues,
+   no shadows, no rounding — sharp corners and the single green, like the rest. */
+
+/* two-column board: dials on the left, sandbox on the right */
+.grid-dials {
+  display: grid;
+  grid-template-columns: minmax(320px, 5fr) minmax(360px, 7fr);
+  gap: 1.25rem;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .grid-dials {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* one dial (label row + slider) */
+.dial {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.dial-caption {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-3);
+}
+.dial-val {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  font-size: 0.84rem;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.dial-from {
+  font-weight: 400;
+  color: var(--ink-3);
+}
+.dial-title {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* sandbox stat strip (a compact StatGroup variant, hairline-divided) */
+.sandbox-stats {
+  display: flex;
+  flex-wrap: wrap;
+  border: var(--hair);
+  background: var(--paper);
+}
+.sb-stat {
+  flex: 1 1 90px;
+  padding: 0.6rem 0.8rem;
+  border-right: var(--hair-soft);
+}
+.sb-stat:last-child {
+  border-right: 0;
+}
+.sb-stat .n {
+  font-family: var(--font-sans);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+.sb-stat .n.green {
+  color: var(--green-ink);
+}
+.sb-stat .l {
+  margin-top: 0.3rem;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-3);
+}
+
+/* delta movement markers — value-coded, monochrome + the single green */
+.up {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--green-ink);
+  white-space: nowrap;
+}
+.down {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.change-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.86rem;
+}
+.change-list li {
+  padding-bottom: 0.4rem;
+  border-bottom: var(--hair-soft);
+}
+.change-list li:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+/* publish modal */
+.modal-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(22, 17, 13, 0.45);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 4rem 1.25rem;
+  overflow-y: auto;
+}
+.modal {
+  width: 100%;
+  max-width: 560px;
+  background: var(--paper);
+  border: 2px solid var(--line);
+}
+
+/* 2-of-4 approval grid */
+.approve-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+@media (max-width: 480px) {
+  .approve-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.approve {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-align: left;
+  padding: 0.55rem 0.7rem;
+  border: var(--hair);
+  background: var(--paper);
+  color: var(--ink-2);
+  cursor: pointer;
+}
+.approve:hover {
+  background: var(--paper-2);
+}
+.approve.on {
+  border-color: var(--green-ink);
+  background: var(--green-wash);
+  color: var(--green-ink);
+}
