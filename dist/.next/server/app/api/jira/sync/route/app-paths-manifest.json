@@ -1,0 +1,3 @@
+{
+  "/api/jira/sync/route": "app/api/jira/sync/route.js"
+}

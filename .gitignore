@@ -1,6 +1,9 @@
-node_modules/
-.next/
-out/
+# Ignore the ROOT dev install and build caches only — NOT the committed,
+# self-contained runtime under dist/ (that is what makes `node server.mjs`
+# work on a box with no network / no npm install).
+/node_modules/
+/.next/
+/out/
 .env
 .env.local
 .DS_Store

@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "functions": {
+    "/api/assistant/ask": {},
+    "/api/confluence/health": {},
+    "/api/confluence/publish": {},
+    "/api/jira/health": {},
+    "/api/jira/intake": {},
+    "/api/jira/ppo": {},
+    "/api/jira/push": {},
+    "/api/jira/sync": {},
+    "/api/metrics/publish": {},
+    "/api/ppo": {},
+    "/api/prioritize/rescore": {},
+    "/dials/preview": {},
+    "/dials/publish": {}
+  }
+}

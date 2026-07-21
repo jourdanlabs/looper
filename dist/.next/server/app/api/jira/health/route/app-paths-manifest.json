@@ -1,0 +1,3 @@
+{
+  "/api/jira/health/route": "app/api/jira/health/route.js"
+}

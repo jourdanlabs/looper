@@ -1,0 +1,3 @@
+{
+  "/api/confluence/health/route": "app/api/confluence/health/route.js"
+}

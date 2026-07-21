@@ -1,0 +1,3 @@
+{
+  "/api/metrics/publish/route": "app/api/metrics/publish/route.js"
+}

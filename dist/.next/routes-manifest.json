@@ -1,0 +1,233 @@
+{
+  "version": 3,
+  "pages404": true,
+  "appType": "app",
+  "caseSensitive": false,
+  "basePath": "",
+  "redirects": [
+    {
+      "source": "/:path+/",
+      "destination": "/:path+",
+      "internal": true,
+      "priority": true,
+      "statusCode": 308,
+      "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
+    }
+  ],
+  "headers": [],
+  "rewrites": {
+    "beforeFiles": [],
+    "afterFiles": [],
+    "fallback": []
+  },
+  "dynamicRoutes": [
+    {
+      "page": "/api/spec/[id]",
+      "regex": "^/api/spec/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/api/spec/(?<nxtPid>[^/]+?)(?:/)?$"
+    }
+  ],
+  "staticRoutes": [
+    {
+      "page": "/",
+      "regex": "^/(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/(?:/)?$"
+    },
+    {
+      "page": "/_global-error",
+      "regex": "^/_global\\-error(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_global\\-error(?:/)?$"
+    },
+    {
+      "page": "/_not-found",
+      "regex": "^/_not\\-found(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_not\\-found(?:/)?$"
+    },
+    {
+      "page": "/api/assistant/ask",
+      "regex": "^/api/assistant/ask(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/assistant/ask(?:/)?$"
+    },
+    {
+      "page": "/api/confluence/health",
+      "regex": "^/api/confluence/health(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/confluence/health(?:/)?$"
+    },
+    {
+      "page": "/api/confluence/publish",
+      "regex": "^/api/confluence/publish(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/confluence/publish(?:/)?$"
+    },
+    {
+      "page": "/api/jira/health",
+      "regex": "^/api/jira/health(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/jira/health(?:/)?$"
+    },
+    {
+      "page": "/api/jira/intake",
+      "regex": "^/api/jira/intake(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/jira/intake(?:/)?$"
+    },
+    {
+      "page": "/api/jira/ppo",
+      "regex": "^/api/jira/ppo(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/jira/ppo(?:/)?$"
+    },
+    {
+      "page": "/api/jira/push",
+      "regex": "^/api/jira/push(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/jira/push(?:/)?$"
+    },
+    {
+      "page": "/api/jira/sync",
+      "regex": "^/api/jira/sync(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/jira/sync(?:/)?$"
+    },
+    {
+      "page": "/api/metrics/publish",
+      "regex": "^/api/metrics/publish(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/metrics/publish(?:/)?$"
+    },
+    {
+      "page": "/api/ppo",
+      "regex": "^/api/ppo(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/ppo(?:/)?$"
+    },
+    {
+      "page": "/api/prioritize/rescore",
+      "regex": "^/api/prioritize/rescore(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/prioritize/rescore(?:/)?$"
+    },
+    {
+      "page": "/assistant",
+      "regex": "^/assistant(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/assistant(?:/)?$"
+    },
+    {
+      "page": "/audit",
+      "regex": "^/audit(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/audit(?:/)?$"
+    },
+    {
+      "page": "/backlog",
+      "regex": "^/backlog(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/backlog(?:/)?$"
+    },
+    {
+      "page": "/capacity",
+      "regex": "^/capacity(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/capacity(?:/)?$"
+    },
+    {
+      "page": "/dials",
+      "regex": "^/dials(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/dials(?:/)?$"
+    },
+    {
+      "page": "/dials/preview",
+      "regex": "^/dials/preview(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/dials/preview(?:/)?$"
+    },
+    {
+      "page": "/dials/publish",
+      "regex": "^/dials/publish(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/dials/publish(?:/)?$"
+    },
+    {
+      "page": "/docs",
+      "regex": "^/docs(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/docs(?:/)?$"
+    },
+    {
+      "page": "/intake",
+      "regex": "^/intake(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/intake(?:/)?$"
+    },
+    {
+      "page": "/integrations",
+      "regex": "^/integrations(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/integrations(?:/)?$"
+    },
+    {
+      "page": "/metrics",
+      "regex": "^/metrics(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/metrics(?:/)?$"
+    },
+    {
+      "page": "/portfolio",
+      "regex": "^/portfolio(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/portfolio(?:/)?$"
+    },
+    {
+      "page": "/ppo",
+      "regex": "^/ppo(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/ppo(?:/)?$"
+    },
+    {
+      "page": "/prioritize",
+      "regex": "^/prioritize(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/prioritize(?:/)?$"
+    },
+    {
+      "page": "/reporting",
+      "regex": "^/reporting(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/reporting(?:/)?$"
+    },
+    {
+      "page": "/spec",
+      "regex": "^/spec(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/spec(?:/)?$"
+    }
+  ],
+  "dataRoutes": [],
+  "rsc": {
+    "header": "rsc",
+    "varyHeader": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+    "prefetchHeader": "next-router-prefetch",
+    "didPostponeHeader": "x-nextjs-postponed",
+    "contentTypeHeader": "text/x-component",
+    "suffix": ".rsc",
+    "prefetchSegmentHeader": "next-router-segment-prefetch",
+    "prefetchSegmentSuffix": ".segment.rsc",
+    "prefetchSegmentDirSuffix": ".segments",
+    "clientParamParsing": false,
+    "dynamicRSCPrerender": false
+  },
+  "rewriteHeaders": {
+    "pathHeader": "x-nextjs-rewritten-path",
+    "queryHeader": "x-nextjs-rewritten-query"
+  }
+}

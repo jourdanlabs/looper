@@ -52,22 +52,40 @@ layer, versioned metric sets, a governance-request gate, a cite-or-refuse
 assistant, spec authoring, and a full audit terminal — every figure traceable to
 an engine receipt.
 
-## Quick start
+## Run it (no install, no build)
+
+The console ships as a **self-contained runtime** under `dist/` — the Next server,
+its traced dependencies, and the prebuilt pages, all committed. On any machine with
+**Node 18+**, that means:
+
+```bash
+git clone https://github.com/jourdanlabs/looper.git
+cd looper
+node server.mjs        # → http://localhost:3000
+```
+
+No `npm install`. No `next build`. No network. This is the mode to use on a
+locked-down / air-gapped box. Change the port with `PORT=8080 node server.mjs`.
+
+## Developing (needs network once)
 
 ```bash
 npm install
+npm run dev            # http://localhost:3000, hot reload
 
-# run the console
-npm run dev            # http://localhost:3000
-
-# or drive the engine from the CLI
+# drive the engine from the CLI
 npm run prioritize     # rank the seeded portfolio
 npm run brief          # regenerate the markdown readout from the ledger
 npm run verify         # walk the ledger chain and report CHAIN VERIFIED / BROKEN
+npm test               # determinism + ledger tamper-evidence
 
-# tests (determinism + ledger tamper-evidence)
-npm test
+# rebuild the self-contained runtime after code changes, then commit dist/
+npm run bundle
 ```
+
+> `npm run bundle` runs `next build` and reassembles `dist/`. Run it on a machine
+> with registry access whenever you change the app, then commit `dist/` so the
+> zero-install `node server.mjs` path stays current.
 
 All data under `seed/` is **synthetic demo data** — fictional teams, initiatives,
 and roster. Point the engine at your own intake to use it for real.

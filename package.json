@@ -12,7 +12,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "bundle": "next build && node scripts/bundle.mjs",
+    "start": "node server.mjs",
     "test": "node --test test/*.test.mjs lib/**/*.test.mjs",
     "prioritize": "node cli.mjs prioritize",
     "brief": "node cli.mjs brief",
