@@ -13,6 +13,7 @@
     "/api/ppo": {},
     "/api/prioritize/rescore": {},
     "/dials/preview": {},
-    "/dials/publish": {}
+    "/dials/publish": {},
+    "/triage": {}
   }
 }

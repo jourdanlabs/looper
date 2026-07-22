@@ -29,5 +29,6 @@
   "/ppo/page": "app/ppo/page.js",
   "/prioritize/page": "app/prioritize/page.js",
   "/reporting/page": "app/reporting/page.js",
-  "/spec/page": "app/spec/page.js"
+  "/spec/page": "app/spec/page.js",
+  "/triage/page": "app/triage/page.js"
 }

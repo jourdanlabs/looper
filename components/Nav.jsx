@@ -20,6 +20,7 @@ const LINKS = [
   { href: "/", label: "BOARD" },
   { href: "/intake", label: "INTAKE" },
   { href: "/prioritize", label: "PRIORITIZE" },
+  { href: "/triage", label: "TRIAGE" },
   { href: "/spec", label: "SPEC" },
   { href: "/backlog", label: "BACKLOG" },
   { href: "/capacity", label: "CAPACITY" },

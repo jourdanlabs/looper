@@ -29,5 +29,6 @@
   "/ppo/page": "/ppo",
   "/prioritize/page": "/prioritize",
   "/reporting/page": "/reporting",
-  "/spec/page": "/spec"
+  "/spec/page": "/spec",
+  "/triage/page": "/triage"
 }

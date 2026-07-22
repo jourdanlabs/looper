@@ -1,6 +1,6 @@
 var R=require("../../chunks/ssr/[turbopack]_runtime.js")("server/app/dials/page.js")
-R.c("server/chunks/ssr/[root-of-the-server]__dcaa0397._.js")
-R.c("server/chunks/ssr/lib_76990c82._.js")
+R.c("server/chunks/ssr/[root-of-the-server]__9e991d84._.js")
+R.c("server/chunks/ssr/[root-of-the-server]__41b01e12._.js")
 R.c("server/chunks/ssr/_746fa244._.js")
 R.c("server/chunks/ssr/node_modules_next_dist_4b9a0874._.js")
 R.c("server/chunks/ssr/lib_engine_mjs_f07351fe._.js")

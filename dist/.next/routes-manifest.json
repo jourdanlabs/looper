@@ -210,6 +210,12 @@
       "regex": "^/spec(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/spec(?:/)?$"
+    },
+    {
+      "page": "/triage",
+      "regex": "^/triage(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/triage(?:/)?$"
     }
   ],
   "dataRoutes": [],
