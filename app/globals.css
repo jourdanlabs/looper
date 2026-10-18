@@ -92,16 +92,16 @@
    ============================================================================ */
 
 :root {
-  /* paper + ink — Chase cool palette */
+  /* paper + ink — cool palette */
   --canvas: #eef3fa;
   --paper: #ffffff; /* card surface */
   --paper-2: #e6eef7; /* alt rows / wells */
   --ink: #101a24; /* near-black navy text */
   --ink-2: #3a4a5a; /* secondary text */
   --ink-3: #64758a; /* tertiary / labels */
-  --line: #0a3d6e; /* hard hairline borders (Chase navy) */
+  --line: #0a3d6e; /* hard hairline borders (navy) */
   --line-soft: #c2d2e2; /* soft internal dividers */
-  --grid: rgba(17, 122, 202, 0.05); /* Chase-blue technical grid lines */
+  --grid: rgba(17, 122, 202, 0.05); /* blue technical grid lines */
 
   /* the single status accent */
   --green: #117ACA;
